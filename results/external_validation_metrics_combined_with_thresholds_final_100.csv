@@ -1,0 +1,4 @@
+"dataset","threshold_type","threshold_value","n_samples","Accuracy","Kappa","Sensitivity","Specificity","Balanced_Accuracy","AUC"
+"Combined_external","fixed_0.5",0.5,76,0.552631578947368,-0.0564186426819296,0.24,0.705882352941177,0.472941176470588,0.415294117647059
+"Combined_external","youden",0.497,76,0.552631578947368,-0.0564186426819296,0.24,0.705882352941177,0.472941176470588,0.415294117647059
+"Combined_external","sensitivity_oriented",0.288,76,0.328947368421053,0,1,0,0.5,0.415294117647059

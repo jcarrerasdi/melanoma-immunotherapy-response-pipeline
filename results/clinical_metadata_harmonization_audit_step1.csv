@@ -1,0 +1,211 @@
+dataset,sample_id,sample_name,response_raw,response,treatment_time,keep,reason_excluded
+GSE160638,GSM4876258,PD1_1,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876259,PD1_10,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876260,PD1_11,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876261,PD1_12,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876262,PD1_13,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876263,PD1_14,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876264,PD1_16,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876265,PD1_17,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876266,PD1_19,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876267,PD1_20,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876268,PD1_21,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876269,PD1_24,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876270,PD1_25,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876271,PD1_26,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876272,PD1_27,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876273,PD1_29,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876274,PD1_32,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876275,PD1_33,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876276,PD1_36,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876277,PD1_38,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876278,PD1_4,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876279,PD1_41,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876280,PD1_43,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876281,PD1_44,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876282,PD1_45,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876283,PD1_46,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876284,PD1_47,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876285,PD1_49,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876286,PD1_5,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876287,PD1_50,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876288,PD1_51,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876289,PD1_53,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876290,PD1_6,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876291,PD1_7,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876292,PD1_8,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876293,PD1_9,NonResponder,NonResponder,PreTreatment,TRUE,NA
+GSE160638,GSM4876294,TIL_1,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876295,TIL_10,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876296,TIL_11,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876297,TIL_12,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876298,TIL_13,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876299,TIL_14,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876300,TIL_15,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876301,TIL_17,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876302,TIL_18,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876303,TIL_19,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876304,TIL_2,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876305,TIL_20,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876306,TIL_21,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876307,TIL_22,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876308,TIL_23,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876309,TIL_24,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876310,TIL_26,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876311,TIL_27,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876312,TIL_28,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876313,TIL_29,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876314,TIL_3,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876315,TIL_30,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876316,TIL_32,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876317,TIL_34,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876318,TIL_35,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876319,TIL_36,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876320,TIL_38,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876321,TIL_39,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876322,TIL_4,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876323,TIL_40,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876324,TIL_42,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876325,TIL_44,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876326,TIL_5,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876327,TIL_6,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876328,TIL_7,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876329,TIL_8,Responder,Responder,PreTreatment,TRUE,NA
+GSE160638,GSM4876330,TIL_9,Responder,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069823,Pt1,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069824,Pt2,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069825,Pt4,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069826,Pt5,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069827,Pt6,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069828,Pt7,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069829,Pt8,Complete Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069830,Pt9,Complete Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069831,Pt10,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069832,Pt12,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069833,Pt13,Complete Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069834,Pt14,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069835,Pt15,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069836,Pt16,Progressive Disease,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE78220,GSM2069837,Pt19,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069838,Pt20,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069839,Pt22,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069840,Pt23,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069841,Pt25,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069842,Pt27A,Complete Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069843,Pt27B,Complete Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069844,Pt28,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069845,Pt29,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069846,Pt31,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069847,Pt32,Progressive Disease,NonResponder,PreTreatment,TRUE,NA
+GSE78220,GSM2069848,Pt35,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069849,Pt37,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE78220,GSM2069850,Pt38,Partial Response,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420259,Pt1_Pre_AD101148-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420260,Pt1_On_AD174047-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420261,Pt2_Pre_AD101150-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420262,Pt2_On_AD174046-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420263,Pt23_On_AD486568-8,UNK,NA,PostOrOnTreatment,FALSE,No response info
+GSE91061,GSM2420264,Pt23_Pre_AD313075-5,UNK,NA,PreTreatment,FALSE,No response info
+GSE91061,GSM2420265,Pt39_Pre_AD485899-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420266,Pt58_On_AE045812-10,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420267,Pt59_Pre_AD823915-5,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420268,Pt82_Pre_AD823914-8,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420269,Pt82_On_AD125218-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420270,Pt49_Pre_AD667851-6,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420271,Pt49_On_AD681976-5,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420272,Pt66_Pre_AD667850-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420273,Pt76_Pre_AD667852-6,UNK,NA,PreTreatment,FALSE,No response info
+GSE91061,GSM2420274,Pt81_On_AD681973-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420275,Pt85_Pre_AD486329-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420276,Pt85_On_AE070989-10,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420277,Pt89_Pre_AE070951-5,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420278,Pt89_On_AE070987-5,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420279,Pt93_On_AE070988-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420280,Pt101_Pre_AD486328-5,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420281,Pt101_On_AD681975-5,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420282,Pt47_Pre_AD506073-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420283,Pt47_On_AD530367-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420284,Pt52_On_AD530365-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420285,Pt52_Pre_AD506075-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420286,Pt67_Pre_AD506074-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420287,Pt67_On_AD530366-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420288,Pt94_On_AE373242-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420289,Pt94_Pre_AD732850-6,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420290,Pt105_On_AE373241-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420291,Pt108_On_AE373243-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420292,Pt77_Pre_AD733591-7,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420293,Pt77_On_AD733629-8,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420294,Pt79_On_AD733628-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420295,Pt79_Pre_AD733587-5,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420296,Pt84_Pre_AD486532-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420297,Pt84_On_AD495199-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420298,Pt87_On_AD495198-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420299,Pt98_Pre_AD733586-8,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420300,Pt98_On_AE086717-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420301,Pt62_On_AD635728-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420302,Pt62_Pre_AD608303-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420303,Pt65_Pre_AD793919-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420304,Pt65_On_AD796996-5,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420305,Pt68_On_AD635729-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420306,Pt69_On_AD635730-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420307,Pt72_Pre_AD793922-5,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420308,Pt78_On_AE148748-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420310,Pt78_Pre_AD467018-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420311,Pt80_On_AD467874-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420312,Pt90_Pre_AD467873-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420313,Pt92_Pre_AE134060-5,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420316,Pt92_On_AE148750-5,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420317,Pt103_On_AE134059-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420318,Pt103_Pre_AE134058-2,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420319,Pt109_On_AE527955-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420320,Pt109_On_AE527955-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420323,Pt3_On_E9047638-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420324,Pt3_Pre_E9024733-3,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420325,Pt4_On_E9047643-7,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420326,Pt4_Pre_E9021023-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420328,Pt5_On_E9047635-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420329,Pt5_Pre_E9021022-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420331,Pt9_Pre_E9021024-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420332,Pt9_On_E9047644-7,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420333,Pt10_Pre_E9047565-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420334,Pt10_On_E9047632-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420335,Pt17_On_E9261162-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420336,Pt17_Pre_E9047563-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420337,Pt18_Pre_E9024732-6,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420338,Pt18_On_E9261163-5,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420339,Pt32_On_E9414883-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420340,Pt38_On_E9414881-5,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420341,Pt38_Pre_E9200719-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420342,Pt48_On_E9047631-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420343,Pt48_Pre_E9047561-7,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420344,Pt36_Pre_AD467095-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420345,Pt36_On_AD495182-6,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420346,Pt37_Pre_AD502452-5,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420349,Pt37_On_AD495183-5,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420350,Pt46_Pre_AD467096-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420351,Pt46_On_AD781834-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420352,Pt24_Pre_AD436687-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420353,Pt27_On_AD467934-5,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420354,Pt27_Pre_AD453873-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420355,Pt29_Pre_AD497504-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420356,Pt30_On_AD505620-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420357,Pt30_Pre_AD497503-5,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420358,Pt31_On_AD467932-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420359,Pt31_Pre_AD453872-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420360,Pt8_Pre_AD153354-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420361,Pt8_On_AD167380-7,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420362,Pt11_Pre_AD153352-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420363,Pt11_On_AD314068-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420364,Pt13_On_AD314067-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420365,Pt16_On_AD167378-6,UNK,NA,PostOrOnTreatment,FALSE,No response info
+GSE91061,GSM2420366,Pt26_Pre_AD467789-6,SD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420367,Pt26_On_AD467915-5,SD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420368,Pt28_Pre_AD297619-6,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420369,Pt28_On_AD167375-7,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420370,Pt44_Pre_AD467790-6,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420371,Pt44_On_AD167376-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420372,Pt106_Pre_AD502250-5,PD,NonResponder,PreTreatment,TRUE,NA
+GSE91061,GSM2420373,Pt106_On_AD513626-6,PD,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420374,Pt34_On_AD485757-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment
+GSE91061,GSM2420375,Pt34_Pre_AD466985-6,PRCR,Responder,PreTreatment,TRUE,NA
+GSE91061,GSM2420376,Pt35_On_AD485758-6,PRCR,Responder,PostOrOnTreatment,FALSE,Not pre-treatment

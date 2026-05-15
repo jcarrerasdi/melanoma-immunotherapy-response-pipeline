@@ -1,0 +1,12 @@
+dataset,response,treatment_time,keep,n
+GSE91061,NonResponder,PostOrOnTreatment,FALSE,43
+GSE91061,NonResponder,PreTreatment,TRUE,39
+GSE160638,Responder,PreTreatment,TRUE,37
+GSE160638,NonResponder,PreTreatment,TRUE,36
+GSE78220,Responder,PreTreatment,TRUE,15
+GSE91061,Responder,PostOrOnTreatment,FALSE,13
+GSE78220,NonResponder,PreTreatment,TRUE,12
+GSE91061,Responder,PreTreatment,TRUE,10
+GSE91061,NA,PostOrOnTreatment,FALSE,2
+GSE91061,NA,PreTreatment,FALSE,2
+GSE78220,NonResponder,PostOrOnTreatment,FALSE,1

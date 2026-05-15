@@ -1,0 +1,5 @@
+category,n_genes
+Stable genes (>=4 folds),29
+Present in GSE78220,20
+Present in GSE91061,22
+Present in both datasets,20

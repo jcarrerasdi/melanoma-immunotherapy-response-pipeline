@@ -1,0 +1,2 @@
+dataset,sample_id,sample_name,response_raw,response,treatment_time,keep,reason_excluded
+GSE78220,GSM2069836,Pt16,Progressive Disease,NonResponder,PostOrOnTreatment,FALSE,Not pre-treatment

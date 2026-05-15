@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# R/RStudio
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# Temporary files
+*.tmp
+*.log
+
+# Large regenerated intermediate files
+*.rds
+*.RDS
+
+# Optional local outputs
+output/
+tmp/
+cache/
+
+# Do not ignore final result tables or figures
+!results/*.csv
+!figures/*.png

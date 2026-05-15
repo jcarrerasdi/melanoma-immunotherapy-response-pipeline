@@ -1,0 +1,11 @@
+"Metric","Value"
+"Accuracy",0.753424657534247
+"Kappa",0.506015037593985
+"Sensitivity",0.810810810810811
+"Specificity",0.694444444444444
+"Balanced_Accuracy",0.752627627627628
+"AUC",0.827702702702703
+"Mean_best_mtry",5.2
+"Unique_genes_selected",292
+"Genes_selected_4plus_folds",29
+"Genes_selected_5of5_folds",13
