@@ -1,11 +1,5 @@
-# ============================================================
-# 08_gene_stability_analysis.R
-# Cleaned/renamed version of: 06_gene_stability_analysis.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 06_gene_stability_analysis.R
+# 08_gene_stability_analysis.R
 ################################
 
 suppressPackageStartupMessages({
@@ -24,7 +18,7 @@ dir.create(results_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 
 # ===========================
-# 1. Leer archivos
+# 1. Llegir fitxers
 # ===========================
 
 gene_freq <- read.csv(
@@ -38,7 +32,7 @@ imp <- read.csv(
 )
 
 # ===========================
-# 2. Resumen global
+# 2. Resum global
 # ===========================
 
 stability_summary <- gene_freq |>
@@ -51,7 +45,7 @@ write.csv(
   row.names = FALSE
 )
 
-cat("\nResumen de estabilidad:\n")
+cat("\nResum d'estabilitat:\n")
 print(stability_summary)
 
 # ===========================
@@ -78,11 +72,11 @@ write.csv(
   row.names = FALSE
 )
 
-cat("\nNúmero de genes en 5/5 folds:", nrow(genes_5of5), "\n")
-cat("Número de genes en >=4 folds:", nrow(genes_4plus), "\n")
+cat("\nNombre de gens en 5/5 folds:", nrow(genes_5of5), "\n")
+cat("Nombre de gens en >=4 folds:", nrow(genes_4plus), "\n")
 
 # ===========================
-# 4. Cruzar estabilidad + importancia
+# 4. Creuar estabilitat + importància
 # ===========================
 
 stable_imp <- gene_freq |>
@@ -113,20 +107,20 @@ write.csv(
   row.names = FALSE
 )
 
-cat("\nTop genes estables + importantes:\n")
+cat("\nTop gens estables + importants:\n")
 print(head(stable_imp_4plus, 20))
 
 # ===========================
-# 5. Figura: distribución de estabilidad
+# 5. Figura: distribució d’estabilitat
 # ===========================
 
 p1 <- ggplot(stability_summary, aes(x = factor(n_folds_selected), y = n_genes)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
   labs(
-    title = "Distribución de estabilidad génica entre folds",
-    x = "Número de folds en los que fue seleccionado",
-    y = "Número de genes"
+    title = "Distribució d’estabilitat gènica entre folds",
+    x = "Nombre de folds en què va ser seleccionat",
+    y = "Nombre de gens"
   )
 
 ggsave(
@@ -138,7 +132,7 @@ ggsave(
 )
 
 # ===========================
-# 6. Figura: top genes estables + importantes
+# 6. Figura: top gens estables + importants
 # ===========================
 
 top_stable_imp <- stable_imp_4plus |>
@@ -149,7 +143,7 @@ p2 <- ggplot(top_stable_imp, aes(x = reorder(gene, importance), y = importance))
   coord_flip() +
   theme_minimal() +
   labs(
-    title = "Top genes estables (>=4 folds) con mayor importancia exploratoria",
+    title = "Top gens estables (>=4 folds) amb major importància exploratòria",
     x = "Gen",
     y = "Mean Decrease Accuracy"
   )
@@ -162,5 +156,5 @@ ggsave(
   dpi = 300
 )
 
-cat("\nAnálisis de estabilidad completado.\n")
+cat("\nAnàlisi d’estabilitat completada.\n")
 

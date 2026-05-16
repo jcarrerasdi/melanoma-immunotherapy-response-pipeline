@@ -1,11 +1,5 @@
-# ============================================================
-# 13_gene_stability_across_datasets.R
-# Cleaned/renamed version of: 11_gene_stability_across_datasets.r
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 11_gene_stability_across_datasets.R
+# 13_gene_stability_across_datasets.R
 ################################
 
 suppressPackageStartupMessages({
@@ -39,11 +33,11 @@ convert_entrez_to_symbol_if_needed <- function(expr_mat, dataset_id) {
   numeric_like <- grepl("^[0-9]+$", rn)
   prop_numeric <- mean(numeric_like, na.rm = TRUE)
   
-  message("[", dataset_id, "] Proporción de IDs numéricos: ", round(prop_numeric, 3))
+  message("[", dataset_id, "] Proporció d'IDs numèrics: ", round(prop_numeric, 3))
   
-  # Si ya son SYMBOL, no convertir
+  # Si ja són SYMBOL, no convertir
   if (prop_numeric <= 0.5) {
-    message("[", dataset_id, "] IDs ya parecen SYMBOL. No se aplica conversión Entrez -> SYMBOL.")
+    message("[", dataset_id, "] Els IDs ja semblen SYMBOL. No s'aplica la conversió Entrez -> SYMBOL.")
     rownames(expr_mat) <- normalize_gene_ids(rownames(expr_mat))
     expr_mat <- expr_mat[!duplicated(rownames(expr_mat)), , drop = FALSE]
     return(expr_mat)
@@ -67,7 +61,7 @@ convert_entrez_to_symbol_if_needed <- function(expr_mat, dataset_id) {
   keep <- !is.na(symbols)
   
   if (sum(keep) == 0) {
-    stop("[", dataset_id, "] No se pudo convertir ningún gen Entrez a SYMBOL.")
+    stop("[", dataset_id, "] No s'ha pogut convertir cap gen Entrez a SYMBOL.")
   }
   
   expr_mat <- expr_mat[keep, , drop = FALSE]
@@ -90,7 +84,7 @@ convert_entrez_to_symbol_if_needed <- function(expr_mat, dataset_id) {
 }
 
 # -----------------------------
-# 1. Genes estables del modelo (≥4 folds)
+# 1. Gens estables del model (≥4 folds)
 # -----------------------------
 stable_genes <- read_csv(
   file.path(results_dir, "stable_genes_4plus_final_100.csv"),
@@ -101,7 +95,7 @@ stable_genes <- read_csv(
 stable_list <- unique(stable_genes$gene_symbol)
 
 # -----------------------------
-# 2. Genes presentes en datasets externos
+# 2. Gens presents en datasets externs
 # -----------------------------
 expr_78220 <- readRDS(file.path(data_processed_dir, "GSE78220_expression_aligned.rds"))
 expr_91061 <- readRDS(file.path(data_processed_dir, "GSE91061_expression_aligned.rds"))
@@ -113,7 +107,7 @@ genes_78220 <- normalize_gene_ids(rownames(expr_78220))
 genes_91061 <- normalize_gene_ids(rownames(expr_91061))
 
 # -----------------------------
-# 3. Construir tabla detallada
+# 3. Construir taula detallada
 # -----------------------------
 stability_table <- data.frame(
   gene = stable_list,
@@ -127,7 +121,7 @@ stability_table <- data.frame(
   dplyr::arrange(dplyr::desc(present_in_both), dplyr::desc(in_GSE78220), dplyr::desc(in_GSE91061), gene)
 
 # -----------------------------
-# 4. Tabla resumen
+# 4. Taula resum
 # -----------------------------
 summary_table <- data.frame(
   category = c(
@@ -146,7 +140,7 @@ summary_table <- data.frame(
 )
 
 # -----------------------------
-# 5. Guardar tablas
+# 5. Desar taules
 # -----------------------------
 write_csv(
   stability_table,
@@ -159,7 +153,7 @@ write_csv(
 )
 
 # -----------------------------
-# 6. Gráfico resumen de presencia génica
+# 6. Gràfic resum de presència gènica
 # -----------------------------
 p_presence <- ggplot(summary_table, aes(x = reorder(category, n_genes), y = n_genes)) +
   geom_col() +
@@ -180,7 +174,7 @@ ggsave(
 )
 
 # -----------------------------
-# 7. NUEVO: figura tipo paper para 5.7
+# 7. NOU: figura tipus paper per a 5.7
 # -----------------------------
 metrics_file <- file.path(results_dir, "stable_signature_external_validation_metrics.csv")
 
@@ -209,7 +203,7 @@ if (file.exists(metrics_file)) {
     )
   )
   
-  # tabla bonita para informe
+  # taula neta per a l'informe
   auc_pretty <- auc_df %>%
     dplyr::select(dataset, signature_label, n_samples, n_genes_used, AUC) %>%
     dplyr::arrange(dataset, signature_label)
@@ -220,7 +214,7 @@ if (file.exists(metrics_file)) {
     row.names = FALSE
   )
   
-  # figura tipo paper
+  # figura tipus paper
   p_auc <- ggplot(auc_df, aes(x = signature_label, y = AUC, fill = dataset)) +
     geom_col(position = position_dodge(width = 0.8), width = 0.7) +
     theme_minimal(base_size = 12) +
@@ -244,15 +238,15 @@ if (file.exists(metrics_file)) {
     dpi = 300
   )
   
-  cat("\nFigura tipo paper generada: stable_signature_external_auc.png\n")
+  cat("\nFigura tipus paper generada: stable_signature_external_auc.png\n")
   
 } else {
-  cat("\nNo se encontró stable_signature_external_validation_metrics.csv\n")
-  cat("Ejecuta antes el script 10B_external_validation_stable_signatures.R\n")
+  cat("\nNo s'ha trobat stable_signature_external_validation_metrics.csv\n")
+  cat("Executa abans el script 10B_external_validation_stable_signatures.R\n")
 }
 
 # -----------------------------
-# 8. Mostrar resumen en consola
+# 8. Mostrar resum a la consola
 # -----------------------------
 cat("\nTaula resum d'estabilitat entre datasets:\n")
 print(summary_table)

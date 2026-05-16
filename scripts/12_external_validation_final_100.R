@@ -1,11 +1,5 @@
-# ============================================================
-# 12_external_validation_final_100.R
-# Cleaned/renamed version of: 10_external_validation_final_100.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 10_external_validation_final_100.R
+# 12_external_validation_final_100.R
 ################################
 
 suppressPackageStartupMessages({
@@ -33,7 +27,7 @@ top_n_genes <- 100
 external_datasets <- c("GSE91061", "GSE78220")
 
 # =========================
-# Funciones auxiliares
+# Funcions auxiliars
 # =========================
 
 clean_ids <- function(x) {
@@ -270,16 +264,16 @@ align_external_expression_and_metadata <- function(expr_ext, meta_ext, dataset_i
   
   common_keys <- intersect(expr_keys, meta_ext$sample_key)
   
-  cat("\n[", dataset_id, "] muestras en expresión:", ncol(expr_ext), "\n", sep = "")
-  cat("[", dataset_id, "] muestras en metadata:", nrow(meta_ext), "\n", sep = "")
-  cat("[", dataset_id, "] muestras comunes tras normalización:", length(common_keys), "\n", sep = "")
+  cat("\n[", dataset_id, "] mostres en expressió:", ncol(expr_ext), "\n", sep = "")
+  cat("[", dataset_id, "] mostres en metadata:", nrow(meta_ext), "\n", sep = "")
+  cat("[", dataset_id, "] mostres comunes després de la normalització:", length(common_keys), "\n", sep = "")
   
   if (length(common_keys) < 2) {
-    cat("\n[", dataset_id, "] Primeras columnas de expresión:\n", sep = "")
+    cat("\n[", dataset_id, "] Primeres columnes d’expressió:\n", sep = "")
     print(head(expr_colnames_original, 20))
-    cat("\n[", dataset_id, "] Primeros sample_name de metadata:\n", sep = "")
+    cat("\n[", dataset_id, "] Primers sample_name de metadata:\n", sep = "")
     print(head(meta_ext$sample_name, 20))
-    stop(paste0("[", dataset_id, "] Menos de 2 muestras comunes entre expresión y metadata"))
+    stop(paste0("[", dataset_id, "] Menys de 2 mostres comunes entre expressió i metadata"))
   }
   
   expr_idx <- match(common_keys, expr_keys)
@@ -318,7 +312,7 @@ get_top_genes_from_train <- function(counts_train, y_train, top_n = 100) {
 }
 
 # =========================
-# 1. Cargar training común
+# 1. Carregar training comú
 # =========================
 
 counts <- readRDS(
@@ -341,19 +335,19 @@ metadata[] <- lapply(metadata, function(x) {
 })
 
 if (!"sample_name" %in% colnames(metadata)) {
-  stop("La columna 'sample_name' no existe en metadata_GSE160638_aligned.csv")
+  stop("La columna 'sample_name' no existeix a metadata_GSE160638_aligned.csv")
 }
 
 if (!"response" %in% colnames(metadata)) {
-  stop("La columna 'response' no existe en metadata_GSE160638_aligned.csv")
+  stop("La columna 'response' no existeix a metadata_GSE160638_aligned.csv")
 }
 
 idx <- match(colnames(counts), metadata$sample_name)
 
 if (any(is.na(idx))) {
-  cat("\nMuestras de counts sin match en metadata:\n")
+  cat("\nMostres de counts sense coincidència a metadata:\n")
   print(colnames(counts)[is.na(idx)])
-  stop("La metadata no está alineada correctamente con colnames(counts)")
+  stop("La metadata no està alineada correctament amb colnames(counts)")
 }
 
 metadata <- metadata[idx, , drop = FALSE]
@@ -364,12 +358,12 @@ y <- factor(metadata$response, levels = c("NonResponder", "Responder"))
 cat("\n===========================\n")
 cat("TRAINING SET\n")
 cat("===========================\n")
-cat("Dimensiones counts:", dim(counts), "\n")
-cat("Distribución de respuesta:\n")
+cat("Dimensions counts:", dim(counts), "\n")
+cat("Distribució de resposta:\n")
 print(table(y, useNA = "ifany"))
 
 # =========================
-# 2. Selección final de genes
+# 2. Selecció final de gens
 # =========================
 
 sel_full <- get_top_genes_from_train(
@@ -382,11 +376,11 @@ selected_genes <- sel_full$top_genes
 selected_genes <- intersect(selected_genes, rownames(counts))
 selected_genes <- unique(selected_genes)
 
-cat("\nGenes seleccionados inicialmente:", length(sel_full$top_genes), "\n")
-cat("Genes seleccionados tras restricción a espacio común:", length(selected_genes), "\n")
+cat("\nGens seleccionats inicialment:", length(sel_full$top_genes), "\n")
+cat("Gens seleccionats després de la restricció a l’espai comú:", length(selected_genes), "\n")
 
 if (length(selected_genes) < 10) {
-  stop("Quedan muy pocos genes tras restringir al espacio común. Revisa la preparación previa.")
+  stop("Queden molt pocs gens després de restringir a l’espai comú. Revisa la preparació prèvia.")
 }
 
 write.csv(
@@ -396,7 +390,7 @@ write.csv(
 )
 
 # =========================
-# 3. Normalización training
+# 3. Normalització training
 # =========================
 
 dge_full <- DGEList(counts = counts)
@@ -454,7 +448,7 @@ write.csv(
 )
 
 # =========================
-# 5. Modelo final
+# 5. Model final
 # =========================
 
 set.seed(3030)
@@ -483,8 +477,8 @@ write.csv(
 
 # =========================
 # 5B. Threshold analysis
-#     Umbrales definidos SOLO
-#     con training / CV
+#     Llindars definits NOMÉS
+#     amb training / CV
 # =========================
 
 cv_pred <- rf_tuned$pred
@@ -494,14 +488,14 @@ if (!is.null(cv_pred) && nrow(cv_pred) > 0) {
     filter(mtry == best_mtry)
   
   if (!"Responder" %in% colnames(cv_pred_best)) {
-    stop("No se encontró la columna de probabilidad 'Responder' en rf_tuned$pred")
+    stop("No s’ha trobat la columna de probabilitat 'Responder' a rf_tuned$pred")
   }
   
   observed_cv <- factor(cv_pred_best$obs, levels = c("NonResponder", "Responder"))
   prob_cv <- as.numeric(cv_pred_best$Responder)
   
 } else {
-  warning("rf_tuned$pred no está disponible. Se usarán probabilidades aparentes del training para definir thresholds.")
+  warning("rf_tuned$pred no està disponible. S’utilitzaran probabilitats aparents del training per definir thresholds.")
   observed_cv <- y
   prob_cv <- as.numeric(predict(rf_final, newdata = X_train, type = "prob")[, "Responder"])
 }
@@ -543,7 +537,7 @@ cat("===========================\n")
 print(threshold_table)
 
 # =========================
-# 6. Validación externa
+# 6. Validació externa
 # =========================
 
 all_external_predictions <- data.frame()
@@ -552,7 +546,7 @@ normalization_audit <- data.frame()
 
 for (ds in external_datasets) {
   cat("\n===========================\n")
-  cat("VALIDANDO EN", ds, "\n")
+  cat("VALIDANT EN", ds, "\n")
   cat("===========================\n")
   
   expr_ext <- readRDS(
@@ -575,10 +569,10 @@ for (ds in external_datasets) {
   })
   
   if (!"sample_name" %in% colnames(meta_ext)) {
-    stop(paste0("[", ds, "] falta la columna 'sample_name' en metadata alineada"))
+    stop(paste0("[", ds, "] falta la columna 'sample_name' a la metadata alineada"))
   }
   if (!"response" %in% colnames(meta_ext)) {
-    stop(paste0("[", ds, "] falta la columna 'response' en metadata alineada"))
+    stop(paste0("[", ds, "] falta la columna 'response' a la metadata alineada"))
   }
   
   aligned_ext <- align_external_expression_and_metadata(
@@ -596,8 +590,8 @@ for (ds in external_datasets) {
   expr_ext_norm <- norm_res$expr
   method_used <- norm_res$method
   
-  cat("Método de normalización para", ds, ":", method_used, "\n")
-  cat("Dimensiones expr_ext después de alinear muestras:", dim(expr_ext_norm), "\n")
+  cat("Mètode de normalització per a", ds, ":", method_used, "\n")
+  cat("Dimensions expr_ext després d’alinear mostres:", dim(expr_ext_norm), "\n")
   
   normalization_audit <- rbind(
     normalization_audit,
@@ -612,10 +606,10 @@ for (ds in external_datasets) {
   
   genes_available <- intersect(selected_genes, rownames(expr_ext_norm))
   
-  cat("Genes de la firma presentes en", ds, ":", length(genes_available), "de", length(selected_genes), "\n")
+  cat("Gens de la signatura presents a", ds, ":", length(genes_available), "de", length(selected_genes), "\n")
   
   if (length(genes_available) < 10) {
-    warning(paste0("[", ds, "] Hay menos de 10 genes disponibles de la firma final."))
+    warning(paste0("[", ds, "] Hi ha menys de 10 gens disponibles de la signatura final."))
   }
   
   X_ext_mat <- matrix(
@@ -696,7 +690,7 @@ for (ds in external_datasets) {
 }
 
 # =========================
-# 7. Métricas globales combinadas
+# 7. Mètriques globals combinades
 # =========================
 
 combined_metrics <- data.frame()
@@ -720,7 +714,7 @@ for (j in seq_len(nrow(threshold_table))) {
 }
 
 cat("\n===========================\n")
-cat("RESULTADOS EXTERNOS COMBINADOS\n")
+cat("RESULTATS EXTERNS COMBINATS\n")
 cat("===========================\n")
 print(combined_metrics)
 
@@ -754,7 +748,7 @@ plot(
 dev.off()
 
 # =========================
-# 8. Guardado de resultados
+# 8. Desament de resultats
 # =========================
 
 write.csv(
@@ -781,7 +775,7 @@ write.csv(
   row.names = FALSE
 )
 
-# Compatibilidad con tus nombres previos:
+# Compatibilitat amb els noms previs:
 metrics_fixed_05 <- all_external_metrics %>%
   filter(threshold_type == "fixed_0.5")
 
@@ -810,7 +804,7 @@ write.csv(
 )
 
 # =========================
-# 9. Figuras resumen
+# 9. Figures resum
 # =========================
 
 plot_metrics <- bind_rows(
@@ -826,7 +820,7 @@ p_auc <- ggplot(plot_metrics, aes(x = dataset_plot, y = AUC)) +
   geom_col() +
   theme_minimal() +
   labs(
-    title = "AUC en validación externa según threshold",
+    title = "AUC en validació externa segons threshold",
     x = "Dataset | threshold",
     y = "AUC"
   ) +
@@ -853,7 +847,7 @@ p_bacc <- ggplot(plot_bacc, aes(x = dataset_plot, y = Balanced_Accuracy)) +
   geom_col() +
   theme_minimal() +
   labs(
-    title = "Balanced accuracy en validación externa según threshold",
+    title = "Balanced accuracy en validació externa segons threshold",
     x = "Dataset | threshold",
     y = "Balanced accuracy"
   ) +
@@ -868,18 +862,18 @@ ggsave(
 )
 
 # =========================
-# 10. Resumen final
+# 10. Resum final
 # =========================
 
 cat("\n===========================\n")
-cat("RESUMEN FINAL VALIDACIÓN EXTERNA\n")
+cat("RESUM FINAL VALIDACIÓ EXTERNA\n")
 cat("===========================\n")
-cat("Tamaño firma final:", length(selected_genes), "\n")
+cat("Mida de la signatura final:", length(selected_genes), "\n")
 cat("Best mtry final:", best_mtry, "\n")
-cat("\nThresholds definidos en training/CV:\n")
+cat("\nThresholds definits en training/CV:\n")
 print(threshold_table)
-cat("\nMétricas por dataset y threshold:\n")
+cat("\nMètriques per dataset i threshold:\n")
 print(all_external_metrics)
-cat("\nMétricas combinadas:\n")
+cat("\nMètriques combinades:\n")
 print(combined_metrics)
 cat("===========================\n")

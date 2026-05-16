@@ -1,9 +1,3 @@
-# ============================================================
-# 09_prepare_external_validation.R
-# Cleaned/renamed version of: 09_prepare_external_validation.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
 # 09_prepare_external_validation.R
 ################################
@@ -42,7 +36,7 @@ clean_gene_ids <- function(x) {
 }
 
 # =========================
-# GSE91061 (FIX CRÍTICO)
+# GSE91061 (CORRECCIÓ CRÍTICA)
 # =========================
 read_gse91061_expression <- function(dest_dir) {
   url <- "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE91nnn/GSE91061/suppl/GSE91061_BMS038109Sample.hg19KnownGene.fpkm.csv.gz"
@@ -61,7 +55,7 @@ read_gse91061_expression <- function(dest_dir) {
   expr <- as.matrix(x)
   mode(expr) <- "numeric"
   
-  # 🔴 CONVERSIÓN A SYMBOL
+  # CONVERSIÓ A SYMBOL
   gene_map <- AnnotationDbi::select(
     org.Hs.eg.db,
     keys = gene_ids,
@@ -111,12 +105,12 @@ read_gse78220_expression <- function(dest_dir) {
 }
 
 # =========================
-# GUARDADO FINAL
+# DESAMENT FINAL
 # =========================
 datasets <- c("GSE91061", "GSE78220")
 
 for (ds in datasets) {
-  cat("\nProcesando:", ds, "\n")
+  cat("\nProcessant:", ds, "\n")
   
   expr <- if (ds == "GSE91061") {
     read_gse91061_expression(data_raw_dir)
@@ -129,6 +123,6 @@ for (ds in datasets) {
     file.path(data_processed_dir, paste0(ds, "_expression_aligned.rds"))
   )
   
-  cat("Guardado:", ds, "\n")
+  cat("Desat:", ds, "\n")
 }
 

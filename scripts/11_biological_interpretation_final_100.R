@@ -1,11 +1,5 @@
-# ============================================================
-# 11_biological_interpretation_final_100.R
-# Cleaned/renamed version of: 08_biological_interpretation_final_100.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 08_biological_interpretation_final_100.R
+# 11_biological_interpretation_final_100.R
 ################################
 
 suppressPackageStartupMessages({

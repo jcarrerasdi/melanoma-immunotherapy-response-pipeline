@@ -1,11 +1,5 @@
-# ============================================================
-# 06_nested_cv_final_100genes.R
-# Cleaned/renamed version of: 05_predictive_model_final_100.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 05_predictive_model_final_100.R
+# 06_nested_cv_final_100genes.R
 ################################
 
 suppressPackageStartupMessages({
@@ -43,9 +37,9 @@ metadata$sample_name <- trimws(metadata$sample_name)
 idx <- match(colnames(counts), metadata$sample_name)
 
 if (any(is.na(idx))) {
-  cat("\nMuestras de counts sin match en metadata:\n")
+  cat("\nMostres de counts sense coincidència a metadata:\n")
   print(colnames(counts)[is.na(idx)])
-  stop("La metadata no está alineada correctamente con colnames(counts)")
+  stop("La metadata no està alineada correctament amb colnames(counts)")
 }
 
 metadata <- metadata[idx, , drop = FALSE]
@@ -53,7 +47,7 @@ stopifnot(all(metadata$sample_name == colnames(counts)))
 
 y <- factor(metadata$response, levels = c("NonResponder", "Responder"))
 
-cat("\nTabla de respuesta:\n")
+cat("\nTaula de resposta:\n")
 print(table(y, useNA = "ifany"))
 
 set.seed(123)
@@ -128,7 +122,7 @@ for (i in seq_along(folds)) {
   top_genes <- sel$top_genes
   selected_genes_by_fold[[paste0("Fold_", i)]] <- top_genes
   
-  cat("Genes seleccionados en train:", length(top_genes), "\n")
+  cat("Gens seleccionats en train:", length(top_genes), "\n")
   
   dge_train_full <- DGEList(counts = counts_train)
   dge_train_full <- calcNormFactors(dge_train_full)
@@ -262,7 +256,7 @@ roc_obj <- roc(
 auc_value <- as.numeric(auc(roc_obj))
 
 cat("\n===========================\n")
-cat("RESULTADOS CV FINAL (100 GENES)\n")
+cat("RESULTATS CV FINAL (100 GENS)\n")
 cat("===========================\n")
 print(conf_mat)
 cat("\nAUC global CV:", round(auc_value, 4), "\n")
@@ -465,16 +459,16 @@ ggsave(
 )
 
 cat("\n===========================\n")
-cat("RESUMEN FINAL - FIRMA 100 GENES\n")
+cat("RESUM FINAL - FIRMA 100 GENS\n")
 cat("===========================\n")
-cat("Número de muestras:", ncol(counts), "\n")
-cat("Número de folds:", outer_folds, "\n")
-cat("Top genes por fold:", top_n_genes, "\n")
+cat("Nombre de mostres:", ncol(counts), "\n")
+cat("Nombre de folds:", outer_folds, "\n")
+cat("Top gens per fold:", top_n_genes, "\n")
 cat("Accuracy global CV:", round(unname(conf_mat$overall["Accuracy"]), 4), "\n")
 cat("Balanced Accuracy global CV:", round(unname(conf_mat$byClass["Balanced Accuracy"]), 4), "\n")
 cat("AUC global CV:", round(auc_value, 4), "\n")
-cat("Genes únicos seleccionados:", nrow(gene_frequency_df), "\n")
-cat("Genes seleccionados en >=4 folds:", sum(gene_frequency_df$n_folds_selected >= 4), "\n")
-cat("Genes seleccionados en 5/5 folds:", sum(gene_frequency_df$n_folds_selected == 5), "\n")
+cat("Gens únics seleccionats:", nrow(gene_frequency_df), "\n")
+cat("Gens seleccionats en >=4 folds:", sum(gene_frequency_df$n_folds_selected >= 4), "\n")
+cat("Gens seleccionats en 5/5 folds:", sum(gene_frequency_df$n_folds_selected == 5), "\n")
 cat("===========================\n")
 

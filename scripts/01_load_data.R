@@ -1,9 +1,3 @@
-# ============================================================
-# 01_load_data.R
-# Cleaned/renamed version of: 01_load_data.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
 # 01_load_data.R
 ################################
@@ -23,7 +17,7 @@ data_processed_dir <- file.path(base_dir, "data_processed")
 dir.create(data_processed_dir, showWarnings = FALSE, recursive = TRUE)
 
 # ===========================
-# 1. Cargar counts
+# 1. Carregar counts
 # ===========================
 
 counts_path <- file.path(data_raw_dir, "GSE160638_combined_raw_counts.csv.gz")
@@ -49,7 +43,7 @@ saveRDS(
 )
 
 # ===========================
-# 2. Descargar metadata GEO
+# 2. Descarregar metadata de GEO
 # ===========================
 
 gse <- getGEO("GSE160638", GSEMatrix = TRUE)

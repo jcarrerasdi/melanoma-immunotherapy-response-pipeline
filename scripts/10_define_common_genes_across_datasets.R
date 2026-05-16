@@ -1,11 +1,5 @@
-# ============================================================
-# 10_define_common_genes_across_datasets.R
-# Cleaned/renamed version of: 09b_define_common_genes_across_datasets.r
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 09b_define_common_genes_across_datasets.R
+# 10_define_common_genes_across_datasets.R
 ################################
 
 suppressPackageStartupMessages({
@@ -46,10 +40,10 @@ common_genes <- Reduce(intersect, list(
   rownames(gse78220)
 ))
 
-cat("Número genes comunes:", length(common_genes), "\n")
+cat("Nombre de gens comuns:", length(common_genes), "\n")
 
 if (length(common_genes) == 0) {
-  stop("ERROR: 0 genes comunes → revisar IDs")
+  stop("ERROR: 0 gens comuns -> revisar IDs")
 }
 
 train_common <- train[common_genes, ]
@@ -60,5 +54,5 @@ saveRDS(train_common, file.path(data_processed_dir, "GSE160638_common_genes_alig
 saveRDS(gse91061_common, file.path(data_processed_dir, "GSE91061_common_genes_aligned.rds"))
 saveRDS(gse78220_common, file.path(data_processed_dir, "GSE78220_common_genes_aligned.rds"))
 
-cat("OK: genes comunes definidos\n")
+cat("OK: gens comuns definits\n")
 

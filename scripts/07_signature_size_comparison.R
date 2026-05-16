@@ -1,9 +1,3 @@
-# ============================================================
-# 07_signature_size_comparison.R
-# Cleaned/renamed version of: 07_signature_size_comparison.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
 # 07_signature_size_comparison.R
 ################################
@@ -29,7 +23,7 @@ dir.create(results_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(figures_dir, showWarnings = FALSE, recursive = TRUE)
 
 # ===========================
-# 1. Cargar datos
+# 1. Carregar dades
 # ===========================
 
 counts <- readRDS(
@@ -47,9 +41,9 @@ metadata$sample_name <- trimws(metadata$sample_name)
 idx <- match(colnames(counts), metadata$sample_name)
 
 if (any(is.na(idx))) {
-  cat("\nMuestras de counts sin match en metadata:\n")
+  cat("\nMostres de counts sense coincidència a metadata:\n")
   print(colnames(counts)[is.na(idx)])
-  stop("La metadata no está alineada correctamente con colnames(counts)")
+  stop("La metadata no està alineada correctament amb colnames(counts)")
 }
 
 metadata <- metadata[idx, , drop = FALSE]
@@ -57,11 +51,11 @@ stopifnot(all(metadata$sample_name == colnames(counts)))
 
 y <- factor(metadata$response, levels = c("NonResponder", "Responder"))
 
-cat("\nTabla de respuesta:\n")
+cat("\nTaula de resposta:\n")
 print(table(y, useNA = "ifany"))
 
 # ===========================
-# 2. Parámetros generales
+# 2. Paràmetres generals
 # ===========================
 
 set.seed(123)
@@ -69,12 +63,12 @@ set.seed(123)
 signature_sizes <- c(50, 100, 250, 500)
 outer_folds <- 5
 
-# mismos folds para todas las comparaciones
+# mateixos folds per a totes les comparacions
 folds <- createFolds(y, k = outer_folds, returnTrain = FALSE)
 
 # ===========================
-# 3. Función auxiliar:
-#    selección de genes SOLO en train
+# 3. Funció auxiliar:
+#    selecció de gens NOMÉS en train
 # ===========================
 
 get_top_genes_from_train <- function(counts_train, y_train, top_n = 500) {
@@ -99,7 +93,7 @@ get_top_genes_from_train <- function(counts_train, y_train, top_n = 500) {
 }
 
 # ===========================
-# 4. Objetos globales
+# 4. Objectes globals
 # ===========================
 
 all_metrics <- data.frame()
@@ -108,13 +102,13 @@ all_stability_summary <- data.frame()
 all_top_stable_genes <- data.frame()
 
 # ===========================
-# 5. Bucle principal por tamaño de firma
+# 5. Bucle principal per mida de signatura
 # ===========================
 
 for (top_n_genes in signature_sizes) {
   
   cat("\n============================================\n")
-  cat("INICIANDO ANÁLISIS PARA top_n_genes =", top_n_genes, "\n")
+  cat("INICIANT ANÀLISI PER A top_n_genes =", top_n_genes, "\n")
   cat("============================================\n")
   
   all_predictions <- data.frame(
@@ -154,7 +148,7 @@ for (top_n_genes in signature_sizes) {
     
     sample_test_names <- colnames(counts_test)
     
-    # Selección SOLO con train
+    # Selecció NOMÉS amb train
     sel <- get_top_genes_from_train(
       counts_train = counts_train,
       y_train = y_train,
@@ -164,9 +158,9 @@ for (top_n_genes in signature_sizes) {
     top_genes <- sel$top_genes
     selected_genes_by_fold[[paste0("Fold_", i)]] <- top_genes
     
-    cat("Genes seleccionados en train:", length(top_genes), "\n")
+    cat("Gens seleccionats en train:", length(top_genes), "\n")
     
-    # Transformación train/test
+    # Transformació train/test
     dge_train_full <- DGEList(counts = counts_train)
     dge_train_full <- calcNormFactors(dge_train_full)
     expr_train <- cpm(dge_train_full, log = TRUE, prior.count = 1)
@@ -188,7 +182,7 @@ for (top_n_genes in signature_sizes) {
     
     X_test <- X_test[, colnames(X_train), drop = FALSE]
     
-    # Tuning SOLO con train
+    # Tuning NOMÉS amb train
     inner_ctrl <- trainControl(
       method = "cv",
       number = 3
@@ -226,7 +220,7 @@ for (top_n_genes in signature_sizes) {
     
     cat("Best mtry in fold", i, "=", best_mtry, "\n")
     
-    # Modelo final del fold
+    # Model final del fold
     set.seed(2000 + top_n_genes + i)
     
     rf_final <- randomForest(
@@ -252,7 +246,7 @@ for (top_n_genes in signature_sizes) {
     
     all_predictions <- rbind(all_predictions, fold_predictions)
     
-    # Métricas por fold
+    # Mètriques per fold
     fold_cm <- confusionMatrix(
       data = factor(pred_class, levels = c("NonResponder", "Responder")),
       reference = factor(y_test, levels = c("NonResponder", "Responder")),
@@ -282,7 +276,7 @@ for (top_n_genes in signature_sizes) {
   }
   
   # ---------------------------
-  # 5.2 Métricas globales
+  # 5.2 Mètriques globals
   # ---------------------------
   all_predictions$observed <- factor(
     all_predictions$observed,
@@ -311,7 +305,7 @@ for (top_n_genes in signature_sizes) {
   auc_value <- as.numeric(auc(roc_obj))
   
   # ---------------------------
-  # 5.3 Estabilidad génica
+  # 5.3 Estabilitat gènica
   # ---------------------------
   gene_frequency <- sort(table(unlist(selected_genes_by_fold)), decreasing = TRUE)
   
@@ -330,7 +324,7 @@ for (top_n_genes in signature_sizes) {
   n_genes_5of5 <- sum(gene_frequency_df$n_folds_selected == outer_folds)
   n_genes_4plus <- sum(gene_frequency_df$n_folds_selected >= 4)
   
-  # top genes más estables
+  # top gens més estables
   top_stable_genes <- gene_frequency_df |>
     arrange(desc(n_folds_selected), gene) |>
     head(30)
@@ -339,7 +333,7 @@ for (top_n_genes in signature_sizes) {
   all_stability_summary <- rbind(all_stability_summary, stability_summary)
   
   # ---------------------------
-  # 5.4 Guardar archivos por tamaño
+  # 5.4 Desar fitxers per mida
   # ---------------------------
   write.csv(
     all_predictions,
@@ -378,7 +372,7 @@ for (top_n_genes in signature_sizes) {
   )
   
   # ---------------------------
-  # 5.5 Resumen global de métricas
+  # 5.5 Resum global de mètriques
   # ---------------------------
   metrics_summary <- data.frame(
     signature_size = top_n_genes,
@@ -406,13 +400,13 @@ for (top_n_genes in signature_sizes) {
   )
   
   cat("\n============================================\n")
-  cat("RESULTADOS PARA SIGNATURE SIZE =", top_n_genes, "\n")
+  cat("RESULTATS PER A SIGNATURE SIZE =", top_n_genes, "\n")
   cat("============================================\n")
   print(metrics_summary)
 }
 
 # ===========================
-# 6. Guardar resultados globales comparativos
+# 6. Desar resultats globals comparatius
 # ===========================
 
 write.csv(
@@ -440,10 +434,10 @@ write.csv(
 )
 
 # ===========================
-# 7. Figuras comparativas
+# 7. Figures comparatives
 # ===========================
 
-# 7.1 AUC por tamaño de firma
+# 7.1 AUC per mida de signatura
 p_auc <- ggplot(all_metrics, aes(x = factor(signature_size), y = AUC, group = 1)) +
   geom_point(size = 3) +
   geom_line() +
@@ -462,14 +456,14 @@ ggsave(
   dpi = 300
 )
 
-# 7.2 Accuracy por tamaño de firma
+# 7.2 Accuracy per mida de signatura
 p_acc <- ggplot(all_metrics, aes(x = factor(signature_size), y = Accuracy, group = 1)) +
   geom_point(size = 3) +
   geom_line() +
   theme_minimal() +
   labs(
-    title = "Comparación de accuracy según tamaño de firma",
-    x = "Número de genes seleccionados por fold",
+    title = "Comparació d'accuracy segons la mida de la signatura",
+    x = "Nombre de gens seleccionats per fold",
     y = "Accuracy global CV"
   )
 
@@ -481,14 +475,14 @@ ggsave(
   dpi = 300
 )
 
-# 7.3 Balanced Accuracy por tamaño de firma
+# 7.3 Balanced Accuracy per mida de signatura
 p_bacc <- ggplot(all_metrics, aes(x = factor(signature_size), y = Balanced_Accuracy, group = 1)) +
   geom_point(size = 3) +
   geom_line() +
   theme_minimal() +
   labs(
-    title = "Comparación de balanced accuracy según tamaño de firma",
-    x = "Número de genes seleccionados por fold",
+    title = "Comparació de balanced accuracy segons la mida de la signatura",
+    x = "Nombre de gens seleccionats per fold",
     y = "Balanced accuracy global CV"
   )
 
@@ -500,15 +494,15 @@ ggsave(
   dpi = 300
 )
 
-# 7.4 Nº de genes únicos seleccionados
+# 7.4 Nombre de gens únics seleccionats
 p_unique <- ggplot(all_metrics, aes(x = factor(signature_size), y = n_unique_genes_selected, group = 1)) +
   geom_point(size = 3) +
   geom_line() +
   theme_minimal() +
   labs(
-    title = "Número de genes únicos seleccionados según tamaño de firma",
-    x = "Número de genes seleccionados por fold",
-    y = "Genes únicos seleccionados"
+    title = "Nombre de gens únics seleccionats segons la mida de la signatura",
+    x = "Nombre de gens seleccionats per fold",
+    y = "Gens únics seleccionats"
   )
 
 ggsave(
@@ -519,15 +513,15 @@ ggsave(
   dpi = 300
 )
 
-# 7.5 Nº de genes seleccionados en 5/5 folds
+# 7.5 Nombre de gens seleccionats en 5/5 folds
 p_stable5 <- ggplot(all_metrics, aes(x = factor(signature_size), y = n_genes_selected_5of5_folds, group = 1)) +
   geom_point(size = 3) +
   geom_line() +
   theme_minimal() +
   labs(
-    title = "Genes seleccionados en 5/5 folds según tamaño de firma",
-    x = "Número de genes seleccionados por fold",
-    y = "Número de genes en 5/5 folds"
+    title = "Gens seleccionats en 5/5 folds segons la mida de la signatura",
+    x = "Nombre de gens seleccionats per fold",
+    y = "Nombre de gens en 5/5 folds"
   )
 
 ggsave(
@@ -538,13 +532,13 @@ ggsave(
   dpi = 300
 )
 
-# 7.6 Boxplot AUC por fold
+# 7.6 Boxplot AUC per fold
 p_auc_fold <- ggplot(all_fold_metrics, aes(x = factor(signature_size), y = AUC)) +
   geom_boxplot() +
   theme_minimal() +
   labs(
-    title = "Distribución del AUC por fold según tamaño de firma",
-    x = "Número de genes seleccionados por fold",
+    title = "Distribució de l'AUC per fold segons la mida de la signatura",
+    x = "Nombre de gens seleccionats per fold",
     y = "AUC por fold"
   )
 
@@ -556,13 +550,13 @@ ggsave(
   dpi = 300
 )
 
-# 7.7 Boxplot Accuracy por fold
+# 7.7 Boxplot Accuracy per fold
 p_acc_fold <- ggplot(all_fold_metrics, aes(x = factor(signature_size), y = Accuracy)) +
   geom_boxplot() +
   theme_minimal() +
   labs(
-    title = "Distribución del accuracy por fold según tamaño de firma",
-    x = "Número de genes seleccionados por fold",
+    title = "Distribució de l'accuracy per fold segons la mida de la signatura",
+    x = "Nombre de gens seleccionats per fold",
     y = "Accuracy por fold"
   )
 
@@ -575,9 +569,9 @@ ggsave(
 )
 
 cat("\n============================================\n")
-cat("ANÁLISIS DE COMPARACIÓN DE TAMAÑO DE FIRMA COMPLETADO\n")
+cat("ANÀLISI DE COMPARACIÓ DE MIDA DE SIGNATURA COMPLETADA\n")
 cat("============================================\n")
 
-cat("\nResumen comparativo final:\n")
+cat("\nResum comparatiu final:\n")
 print(all_metrics[order(-all_metrics$AUC), ])
 

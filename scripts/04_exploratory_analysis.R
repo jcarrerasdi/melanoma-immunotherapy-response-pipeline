@@ -1,11 +1,5 @@
-# ============================================================
-# 04_exploratory_analysis.R
-# Cleaned/renamed version of: 03_exploratory_analysis.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 03_exploratory_analysis.R
+# 04_exploratory_analysis.R
 ################################
 
 suppressPackageStartupMessages({
@@ -35,12 +29,12 @@ metadata$sample_name <- trimws(metadata$sample_name)
 
 idx <- match(colnames(expr), metadata$sample_name)
 
-cat("Número de muestras en expr:", ncol(expr), "\n")
-cat("Número de muestras en metadata:", nrow(metadata), "\n")
-cat("Número de muestras no alineadas:", sum(is.na(idx)), "\n")
+cat("Nombre de mostres a expr:", ncol(expr), "\n")
+cat("Nombre de mostres a metadata:", nrow(metadata), "\n")
+cat("Nombre de mostres no alineades:", sum(is.na(idx)), "\n")
 
 if (any(is.na(idx))) {
-  cat("\nMuestras de expr sin match en metadata:\n")
+  cat("\nMostres d'expr sense coincidència a metadata:\n")
   print(colnames(expr)[is.na(idx)])
   stop("No s'ha pogut alinear metadata$sample_name amb colnames(expr)")
 }

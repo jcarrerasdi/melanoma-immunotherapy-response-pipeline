@@ -1,11 +1,5 @@
-# ============================================================
-# 03_preprocessing_train.R
-# Cleaned/renamed version of: 02_preprocessing.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 02_preprocessing.R
+# 03_preprocessing.R
 ################################
 
 suppressPackageStartupMessages({
@@ -29,7 +23,7 @@ metadata <- read.csv(
 )
 
 # ===========================
-# 0. Limpieza básica
+# 0. Neteja bàsica
 # ===========================
 
 colnames(counts) <- trimws(colnames(counts))
@@ -39,25 +33,25 @@ metadata[] <- lapply(metadata, function(x) {
 })
 
 if (!"sample_name" %in% colnames(metadata)) {
-  stop("La columna 'sample_name' no existe en metadata")
+  stop("La columna 'sample_name' no existeix a metadata")
 }
 
 metadata$sample_name <- trimws(metadata$sample_name)
 
 # ===========================
-# 1. Alineación counts-metadata
+# 1. Alineació counts-metadata
 # ===========================
 
 idx <- match(colnames(counts), metadata$sample_name)
 
-cat("Número de muestras en counts:", ncol(counts), "\n")
-cat("Número de muestras en metadata:", nrow(metadata), "\n")
-cat("Número de muestras no alineadas:", sum(is.na(idx)), "\n")
+cat("Nombre de mostres en counts:", ncol(counts), "\n")
+cat("Nombre de mostres en metadata:", nrow(metadata), "\n")
+cat("Nombre de mostres no alineades:", sum(is.na(idx)), "\n")
 
 if (any(is.na(idx))) {
-  cat("\nMuestras de counts sin match en metadata:\n")
+  cat("\nMostres de counts sense coincidència en metadata:\n")
   print(colnames(counts)[is.na(idx)])
-  stop("No se ha podido alinear metadata con counts en preprocessing")
+  stop("No s'ha pogut alinear metadata amb counts en el preprocessament")
 }
 
 metadata <- metadata[idx, , drop = FALSE]
@@ -65,14 +59,14 @@ metadata <- metadata[idx, , drop = FALSE]
 stopifnot(all(metadata$sample_name == colnames(counts)))
 
 # ===========================
-# 2. Control explícito de pre-treatment
+# 2. Control explícit de pre-treatment
 # ===========================
-# Este bloque es crítico para evitar mezclar muestras baseline con
-# muestras on-treatment o post-treatment.
+# Aquest bloc és crític per evitar barrejar mostres baseline amb
+# mostres on-treatment o post-treatment.
 #
-# Si existe una variable temporal, se verifica y se filtra de forma explícita.
-# Si no existe, el script informa de ello y mantiene las muestras, asumiendo
-# que corresponden al diseño basal del dataset.
+# Si existeix una variable temporal, es verifica i es filtra de forma explícita.
+# Si no existeix, el script n'informa i manté les mostres, assumint
+# que corresponen al disseny basal del dataset.
 
 timepoint_candidates <- c(
   "timepoint",
@@ -90,7 +84,7 @@ if (length(timepoint_col) > 0) {
   timepoint_col <- timepoint_col[1]
   
   cat("\nColumna temporal detectada:", timepoint_col, "\n")
-  cat("Distribución original de timepoint:\n")
+  cat("Distribució original de timepoint:\n")
   print(table(metadata[[timepoint_col]], useNA = "ifany"))
   
   timepoint_values <- tolower(trimws(as.character(metadata[[timepoint_col]])))
@@ -103,29 +97,29 @@ if (length(timepoint_col) > 0) {
   
   keep_pre <- !is.na(timepoint_values) & timepoint_values %in% pre_labels
   
-  cat("\nNúmero de muestras pre-treatment detectadas:", sum(keep_pre), "\n")
-  cat("Número de muestras excluidas por no ser pre-treatment:", sum(!keep_pre), "\n")
+  cat("\nNombre de mostres pre-treatment detectades:", sum(keep_pre), "\n")
+  cat("Nombre de mostres excloses per no ser pre-treatment:", sum(!keep_pre), "\n")
   
   counts <- counts[, keep_pre, drop = FALSE]
   metadata <- metadata[keep_pre, , drop = FALSE]
   
-  cat("\nDistribución de timepoint tras el filtrado:\n")
+  cat("\nDistribució de timepoint després del filtratge:\n")
   print(table(metadata[[timepoint_col]], useNA = "ifany"))
   
 } else {
-  cat("\nNo se ha detectado columna temporal explícita en metadata.\n")
-  cat("Se asume que las muestras corresponden al diseño basal/pre-treatment del dataset.\n")
+  cat("\nNo s'ha detectat cap columna temporal explícita a metadata.\n")
+  cat("S'assumeix que les mostres corresponen al disseny basal/pre-treatment del dataset.\n")
 }
 
-# Revalidar alineación tras posible filtrado temporal
+# Revalidar l'alineació després del possible filtratge temporal
 stopifnot(all(metadata$sample_name == colnames(counts)))
 
 # ===========================
-# 3. Filtrado por respuesta clínica válida
+# 3. Filtratge per resposta clínica vàlida
 # ===========================
 
 if (!"response" %in% colnames(metadata)) {
-  stop("La columna 'response' no existe en metadata")
+  stop("La columna 'response' no existeix a metadata")
 }
 
 keep_samples <- !is.na(metadata$response) & metadata$response != ""
@@ -135,55 +129,55 @@ metadata <- metadata[keep_samples, , drop = FALSE]
 
 group <- factor(metadata$response, levels = c("NonResponder", "Responder"))
 
-cat("\nTabla response:\n")
+cat("\nTaula response:\n")
 print(table(group, useNA = "ifany"))
 
 if (nlevels(droplevels(group)) < 2) {
-  stop("Después del filtrado no quedan dos clases válidas en 'response'")
+  stop("Després del filtratge no queden dues classes vàlides a 'response'")
 }
 
 # ===========================
-# 4. Crear objeto DGE
+# 4. Crear objecte DGE
 # ===========================
 
 dge <- DGEList(counts = counts, group = group)
 
 # ===========================
-# 5. Filtrar genes poco expresados
+# 5. Filtrar gens poc expressats
 # ===========================
 
 keep <- filterByExpr(dge, group = group)
 dge <- dge[keep, , keep.lib.sizes = FALSE]
 
-cat("\nDimensiones después del filtrado de genes:", dim(dge), "\n")
+cat("\nDimensions després del filtratge de gens:", dim(dge), "\n")
 
 # ===========================
-# 6. Normalización TMM
+# 6. Normalització TMM
 # ===========================
 
 dge <- calcNormFactors(dge)
 
 # ===========================
-# 7. Expresión logCPM
+# 7. Expressió logCPM
 # ===========================
 
 expr <- cpm(dge, log = TRUE, prior.count = 1)
 
-cat("Dimensiones expr:", dim(expr), "\n")
-cat("Primeros genes:\n")
+cat("Dimensions expr:", dim(expr), "\n")
+cat("Primers gens:\n")
 print(head(rownames(expr)))
 
 # ===========================
-# 8. Guardado de resultados
+# 8. Desament de resultats
 # ===========================
 
-# Matriz para PCA / exploración descriptiva
+# Matriu per a PCA / exploració descriptiva
 saveRDS(
   expr,
   file.path(data_processed_dir, "GSE160638_expression_matrix_exploration.rds")
 )
 
-# Counts alineados y filtrados para modelización sin fugas
+# Counts alineats i filtrats per a modelització sense fugues
 saveRDS(
   counts,
   file.path(data_processed_dir, "GSE160638_raw_counts_aligned.rds")

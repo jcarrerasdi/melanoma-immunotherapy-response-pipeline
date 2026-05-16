@@ -1,8 +1,6 @@
-# ============================================================
+################################
 # 02_clinical_harmonization.R
-# Cleaned/renamed version of: 06A_clinical_harmonization_step1.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
+################################
 
 suppressPackageStartupMessages({
   library(GEOquery)
@@ -13,7 +11,7 @@ suppressPackageStartupMessages({
 })
 
 # --------------------------------------------------
-# RUTAS
+# RUTES
 # --------------------------------------------------
 
 # Project root: run scripts either from the project root or from the scripts/ folder.
@@ -28,7 +26,7 @@ dir.create(results_dir, showWarnings = FALSE, recursive = TRUE)
 datasets <- c("GSE160638", "GSE78220", "GSE91061")
 
 # --------------------------------------------------
-# FUNCIONES AUXILIARES
+# FUNCIONS AUXILIARS
 # --------------------------------------------------
 
 clean_text <- function(x) {
@@ -68,11 +66,11 @@ extract_sample_name_default <- function(pheno, dataset_id) {
     return(clean_text(pheno$geo_accession))
   }
   
-  stop(paste0("[", dataset_id, "] no se pudo inferir sample_name"))
+  stop(paste0("[", dataset_id, "] no s'ha pogut inferir sample_name"))
 }
 
 # --------------------------------------------------
-# RESPUESTA CLÍNICA
+# RESPOSTA CLÍNICA
 # --------------------------------------------------
 
 extract_response_from_text <- function(x) {
@@ -121,7 +119,7 @@ map_response_value <- function(x) {
 }
 
 # --------------------------------------------------
-# TIEMPO DE TRATAMIENTO
+# TEMPS DE TRACTAMENT
 # --------------------------------------------------
 
 infer_treatment_time <- function(dataset_id, title_vec, source_vec, char_all, sample_name) {
@@ -136,11 +134,11 @@ infer_treatment_time <- function(dataset_id, title_vec, source_vec, char_all, sa
   text_all <- tolower(text_all)
   out <- rep(NA_character_, length(text_all))
   
-  # reglas generales
+  # regles generals
   out[grepl("pre[- ]?treatment|pretreatment|baseline|before treatment", text_all)] <- "PreTreatment"
   out[grepl("on[- ]?treatment|post[- ]?treatment|after treatment|progression", text_all)] <- "PostOrOnTreatment"
   
-  # reglas específicas
+  # regles específiques
   if (dataset_id == "GSE160638") {
     out[is.na(out)] <- "PreTreatment"
   }
@@ -161,14 +159,14 @@ infer_treatment_time <- function(dataset_id, title_vec, source_vec, char_all, sa
 }
 
 # --------------------------------------------------
-# PROCESAMIENTO
+# PROCESSAMENT
 # --------------------------------------------------
 
 all_metadata <- list()
 
 for (ds in datasets) {
   
-  cat("\nProcesando:", ds, "\n")
+  cat("\nProcessant:", ds, "\n")
   
   gse <- getGEO(ds, GSEMatrix = TRUE)
   eset <- gse[[1]]
@@ -247,7 +245,7 @@ for (ds in datasets) {
 }
 
 # --------------------------------------------------
-# RESUMEN
+# RESUM
 # --------------------------------------------------
 
 all_df <- bind_rows(all_metadata)
@@ -284,6 +282,6 @@ write_csv(
   file.path(results_dir, "clinical_metadata_exclusion_reasons_step1.csv")
 )
 
-cat("\nPASO 1 COMPLETADO\n")
+cat("\nPAS 1 COMPLETAT\n")
 print(summary_df)
 

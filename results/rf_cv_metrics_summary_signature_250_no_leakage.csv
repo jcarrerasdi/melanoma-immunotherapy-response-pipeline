@@ -1,0 +1,2 @@
+"signature_size","Accuracy","Kappa","Sensitivity","Specificity","Balanced_Accuracy","AUC","n_unique_genes_selected","n_genes_selected_4plus_folds","n_genes_selected_5of5_folds","mean_best_mtry"
+250,0.780821917808219,0.561232156273479,0.810810810810811,0.75,0.780405405405405,0.831456456456456,688,95,39,19.2

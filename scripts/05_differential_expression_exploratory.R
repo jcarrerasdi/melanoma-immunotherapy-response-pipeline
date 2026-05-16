@@ -1,11 +1,5 @@
-# ============================================================
-# 05_differential_expression_exploratory.R
-# Cleaned/renamed version of: 04_differential_expression.R
-# Purpose: reproducible TFM pipeline while preserving the output filenames used in the memoria.
-# ============================================================
-
 ################################
-# 04_differential_expression.R
+# 05_differential_expression_exploratory.R
 ################################
 
 suppressPackageStartupMessages({
@@ -35,12 +29,12 @@ metadata$sample_name <- trimws(metadata$sample_name)
 
 idx <- match(colnames(counts), metadata$sample_name)
 
-cat("Número de muestras no alineadas:", sum(is.na(idx)), "\n")
+cat("Nombre de mostres no alineades:", sum(is.na(idx)), "\n")
 
 if (any(is.na(idx))) {
-  cat("\nMuestras de counts sin match en metadata:\n")
+  cat("\nMostres de counts sense coincidència a metadata:\n")
   print(colnames(counts)[is.na(idx)])
-  stop("No se ha podido alinear metadata$sample_name con colnames(counts)")
+  stop("No s'ha pogut alinear metadata$sample_name amb colnames(counts)")
 }
 
 metadata2 <- metadata[idx, , drop = FALSE]
@@ -48,11 +42,11 @@ stopifnot(all(metadata2$sample_name == colnames(counts)))
 
 group <- factor(metadata2$response, levels = c("NonResponder", "Responder"))
 
-cat("\nTabla response después del filtrado:\n")
+cat("\nTaula response després del filtratge:\n")
 print(table(group))
 
 if (length(levels(group)) < 2) {
-  stop("El factor 'group' tiene menos de 2 niveles. Revisa metadata$response.")
+  stop("El factor 'group' té menys de 2 nivells. Revisa metadata$response.")
 }
 
 dge <- DGEList(counts = counts, group = group)
@@ -77,8 +71,8 @@ write.csv(
   row.names = FALSE
 )
 
-cat("\nAnálisis DE completado correctamente.\n")
-cat("Número de genes analizados:", nrow(de), "\n")
-cat("\nNOTA: este análisis DE es descriptivo/biológico.\n")
-cat("No debe utilizarse para seleccionar genes antes de la validación cruzada del modelo.\n")
+cat("\nAnàlisi DE completada correctament.\n")
+cat("Nombre de gens analitzats:", nrow(de), "\n")
+cat("\nNOTA: aquesta anàlisi DE és descriptiva/biològica.\n")
+cat("No s'ha d'utilitzar per seleccionar gens abans de la validació creuada del model.\n")
 
